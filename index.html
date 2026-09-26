@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Excellent Vibecoded Med School Games</title>
+<meta name="description" content="Free browser games for Step 1: microbiology, pharmacology, pulmonology, cardiology and clinical reasoning." />
+<meta name="theme-color" content="#f2f4f8" />
+<link rel="icon" href="icon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<link rel="canonical" href="https://evmedschoolgames.github.io/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Excellent Vibecoded Med School Games" />
+<meta property="og:title" content="Excellent Vibecoded Med School Games" />
+<meta property="og:description" content="Free browser study games for Step 1: tower defence for bugs and drugs, lung-curve puzzles and a daily clinical case." />
+<meta property="og:url" content="https://evmedschoolgames.github.io/" />
+<meta property="og:image" content="https://evmedschoolgames.github.io/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Excellent Vibecoded Med School Games: five subject tiles in microbiology, pharmacology, pulmonology, cardiology and clinical reasoning" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Excellent Vibecoded Med School Games" />
+<meta name="twitter:description" content="Free browser study games for Step 1: tower defence for bugs and drugs, lung-curve puzzles and a daily clinical case." />
+<meta name="twitter:image" content="https://evmedschoolgames.github.io/og.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+<style>
+  /* A bright exam-room page: cool paper, navy ink, and one bold colour per subject (the stain rack). */
+  :root {
+    color-scheme: light;
+    --ground: #f2f4f8;
+    --surface: #ffffff;
+    --ink: #101733;
+    --ink-soft: #4b5575;
+    --ink-faint: #7f88a3;
+    --line: #dde2ec;
+    --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+    --shadow: 0 1px 2px rgba(16, 23, 51, 0.06), 0 12px 32px -16px rgba(16, 23, 51, 0.25);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--ground); color: var(--ink); }
+  body { font: 17px/1.55 var(--body); padding-inline: 20px; }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  img { max-width: 100%; }
+
+  /* ---------- header ---------- */
+  header.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 20px; }
+  .mark { display: inline-flex; width: 42px; height: 42px; }
+  .mark svg { width: 100%; height: 100%; }
+  .count { font: 500 13px/1 var(--mono); color: var(--ink-soft); letter-spacing: 0.03em; display: inline-flex; align-items: center; gap: 8px; }
+  .count::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #1fae6b; box-shadow: 0 0 0 4px rgba(31, 174, 107, 0.18); }
+
+  /* ---------- hero ---------- */
+  .hero { padding-block: 40px 30px; display: grid; gap: 20px; }
+  h1 { margin: 0; max-width: 15ch; font: 800 clamp(44px, 7.2vw, 92px)/0.95 var(--display); letter-spacing: -0.035em; text-wrap: balance; }
+  .rack { display: flex; height: 12px; max-width: 520px; border-radius: 999px; overflow: hidden; }
+  .rack span { flex: 1; }
+  .lede { margin: 0; max-width: 56ch; color: var(--ink-soft); font-size: 19px; }
+
+  /* ---------- subject tiles ---------- */
+  .label { font: 500 12px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin: 26px 0 14px; display: flex; justify-content: space-between; gap: 12px; }
+  .label button { all: unset; cursor: pointer; color: var(--ink-soft); text-transform: none; letter-spacing: 0; font: 700 14px/1 var(--display); }
+  .label button:hover { color: var(--ink); text-decoration: underline; }
+  .label button[hidden] { display: none; }
+  .tiles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+  .tile {
+    --c: #333; --d: #111;
+    position: relative; display: grid; grid-template-rows: auto 1fr; gap: 6px; text-align: left;
+    padding: 0 0 16px; border: 0; border-radius: 20px; overflow: hidden; cursor: pointer;
+    color: #fff; background: var(--c); font: inherit;
+    box-shadow: var(--shadow); transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+  }
+  .tile:hover { transform: translateY(-3px); }
+  .tile .art { height: 108px; background: linear-gradient(160deg, rgba(255,255,255,0.14), rgba(255,255,255,0) 60%), var(--d); display: grid; place-items: center; }
+  .tile .art svg { width: 150px; height: 94px; }
+  .tile b { display: block; padding: 8px 16px 0; font: 800 20px/1.1 var(--display); letter-spacing: -0.01em; }
+  .tile small { display: block; padding: 0 16px; font-size: 14px; line-height: 1.35; color: rgba(255, 255, 255, 0.86); }
+  .tile .n { position: absolute; top: 10px; right: 10px; font: 500 11px/1 var(--mono); padding: 6px 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.2); color: #fff; }
+  .tiles.has-pick .tile:not([aria-pressed="true"]) { opacity: 0.45; }
+  .tile[aria-pressed="true"] { box-shadow: 0 0 0 4px var(--ground), 0 0 0 7px var(--c), var(--shadow); }
+  .tile:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+
+  /* ---------- section banner ---------- */
+  .section { margin-top: 56px; scroll-margin-top: 16px; }
+  .banner {
+    --c: #333; --d: #111;
+    position: relative; overflow: hidden; border-radius: 26px; color: #fff;
+    background: radial-gradient(120% 140% at 100% 0%, rgba(255,255,255,0.16), transparent 55%), var(--c);
+    padding: 28px 32px; min-height: 150px; display: flex; align-items: center;
+  }
+  .banner .big { position: absolute; right: 28px; top: 50%; transform: translateY(-50%); width: 220px; height: 138px; }
+  .banner > div { position: relative; max-width: 60%; }
+  .banner .eyebrow { font: 500 12px/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; }
+  .banner h2 { margin: 8px 0 6px; font: 800 clamp(30px, 4vw, 44px)/1 var(--display); letter-spacing: -0.02em; }
+  .banner p { margin: 0; font-size: 17px; opacity: 0.92; }
+
+  /* ---------- game feature ---------- */
+  .game { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 30px; align-items: center; margin-top: 22px; padding: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 26px; box-shadow: var(--shadow); }
+  .panel { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .panel button { all: unset; cursor: zoom-in; position: relative; display: block; aspect-ratio: 1200 / 630; max-width: 100%; border-radius: 14px; overflow: hidden; background: var(--ground); outline-offset: 3px; }
+  .panel button:focus-visible { outline: 3px solid var(--ink); }
+  .panel img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.35s ease; }
+  .panel button:hover img { transform: scale(1.04); }
+  .panel .missing { width: 100%; height: 100%; display: grid; place-items: center; font: 500 12px/1 var(--mono); color: var(--ink-faint); background: repeating-linear-gradient(45deg, #eef1f6 0 10px, #e7ebf2 10px 20px); }
+  .info { display: grid; gap: 12px; padding-right: 8px; }
+  .row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .status { display: inline-flex; align-items: center; gap: 7px; font: 500 12px/1 var(--mono); padding: 7px 10px; border-radius: 999px; background: #e7f6ee; color: #146b44; }
+  .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #1fae6b; }
+  .fmt { font: 500 12px/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-faint); }
+  .info h3 { margin: 0; font: 800 44px/1 var(--display); letter-spacing: -0.025em; }
+  .info h3 small { display: block; margin-top: 6px; font: 700 18px/1.2 var(--display); letter-spacing: 0; color: var(--ink-soft); }
+  .pitch { margin: 0; font-size: 18px; }
+  .detail { margin: 0; color: var(--ink-soft); font-size: 15px; }
+  .subj { font: 700 13px/1 var(--display); padding: 7px 11px; border-radius: 999px; color: var(--c); background: color-mix(in srgb, var(--c) 12%, white); border: 1px solid color-mix(in srgb, var(--c) 30%, white); }
+  .cta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 6px; }
+  .play { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 800 18px/1 var(--display); padding: 15px 22px; border-radius: 16px; color: #fff; background: var(--ink); transition: background 0.15s, transform 0.15s; }
+  .play:hover { background: var(--c); transform: translateY(-1px); }
+  .play svg { width: 18px; height: 18px; }
+  .note { font-size: 13px; color: var(--ink-faint); }
+
+  /* ---------- lightbox ---------- */
+  .lightbox { position: fixed; inset: 0; z-index: 10; display: grid; place-items: center; padding: 24px; background: rgba(16, 23, 51, 0.82); cursor: zoom-out; }
+  .lightbox img { max-width: min(1200px, 100%); max-height: 88vh; border-radius: 16px; box-shadow: 0 30px 80px rgba(0,0,0,0.5); }
+
+  footer { margin-top: 80px; padding-block: 26px 40px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 28px; font-size: 14px; color: var(--ink-faint); }
+  footer p { margin: 0; max-width: 72ch; }
+
+  @media (max-width: 980px) {
+    .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .game { grid-template-columns: 1fr; }
+    .banner > div { max-width: 100%; }
+    .banner .big { opacity: 0.25; }
+  }
+  @media (max-width: 560px) {
+    .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tile .art { height: 84px; }
+    .tile .art svg { width: 120px; height: 76px; }
+    .game { padding: 14px; gap: 18px; }
+    .info h3 { font-size: 36px; }
+    .banner { padding: 22px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="./" aria-label="Excellent Vibecoded Med School Games: home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#101733"/><path d="M10 36h10l5-13 8 24 6-15h15" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <span class="count" id="count"></span>
+  </header>
+
+  <section class="hero">
+    <h1>Excellent Vibecoded Med School Games</h1>
+    <div class="rack" id="rack" aria-hidden="true"></div>
+    <p class="lede">Free study games for Step 1, built between lectures. Pick a subject, play a round, and learn the fact that always comes up.</p>
+  </section>
+
+  <div class="label"><span>Pick a subject</span><button type="button" id="showAll" hidden>Show every game</button></div>
+  <div class="tiles" id="tiles" role="group" aria-label="Subjects"></div>
+
+  <main id="games" aria-live="polite"></main>
+
+  <footer>
+    <p>Study games, not medical advice. Content is still being checked, so trust your textbooks first. Not affiliated with the USMLE, NBME, First Aid or Pathoma.</p>
+    <p>Progress saves in your own browser.</p>
+  </footer>
+</div>
+
+<script>
+  // Line art for each subject, drawn in white on the subject colour. viewBox 160 x 100.
+  const ART = {
+    micro: `<g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round">
+      <circle cx="80" cy="50" r="46" stroke-opacity=".35" stroke-dasharray="3 6"/>
+      <circle cx="42" cy="36" r="7"/><circle cx="55" cy="40" r="7"/><circle cx="68" cy="42" r="7"/><circle cx="81" cy="40" r="7"/>
+      <circle cx="98" cy="62" r="6.5" fill="#fff" fill-opacity=".25"/><circle cx="110" cy="57" r="6.5" fill="#fff" fill-opacity=".25"/><circle cx="108" cy="70" r="6.5" fill="#fff" fill-opacity=".25"/><circle cx="120" cy="66" r="6.5" fill="#fff" fill-opacity=".25"/><circle cx="96" cy="75" r="6.5" fill="#fff" fill-opacity=".25"/>
+      <rect x="44" y="62" width="30" height="11" rx="5.5"/>
+      <path d="M94 24c4-7 8-7 12 0s8 7 12 0 8-7 12 0"/></g>`,
+    pharm: `<g stroke="#fff" stroke-width="3" stroke-linejoin="round">
+      <g transform="rotate(-32 58 44)"><rect x="30" y="34" width="56" height="22" rx="11" fill="none"/><path d="M58 34h17a11 11 0 0 1 0 22H58z" fill="#fff" fill-opacity=".85"/></g>
+      <circle cx="112" cy="36" r="15" fill="none"/><path d="M100 36h24" stroke-linecap="round"/>
+      <path d="M98 64l12-7 12 7v14l-12 7-12-7z" fill="none"/><circle cx="110" cy="71" r="5" fill="none"/>
+      <circle cx="54" cy="80" r="8" fill="#fff" fill-opacity=".85"/><circle cx="74" cy="84" r="5" fill="none"/></g>`,
+    pulm: `<g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M80 8v30M80 38c-6 6-14 8-20 16s-8 16-12 22M60 54c2 8 4 14 4 24M80 38c6 6 14 8 20 16s8 16 12 22M100 54c-2 8-4 14-4 24"/>
+      <path d="M48 76c-6 6-10 10-14 12M112 76c6 6 10 10 14 12"/>
+      <g fill="#fff" fill-opacity=".3"><circle cx="34" cy="88" r="5"/><circle cx="46" cy="84" r="5"/><circle cx="64" cy="84" r="5"/><circle cx="96" cy="84" r="5"/><circle cx="114" cy="84" r="5"/><circle cx="126" cy="88" r="5"/></g></g>`,
+    cardio: `<g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M80 86C44 64 34 42 52 30c11-7 22-2 28 8 6-10 17-15 28-8 18 12 8 34-28 56z" fill="#fff" fill-opacity=".18"/>
+      <path d="M6 58h40l6-10 6 18 8-36 8 42 6-14h74"/></g>`,
+    reasoning: `<g fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="36" y="16" width="58" height="74" rx="9"/><rect x="52" y="10" width="26" height="12" rx="5" fill="#fff" fill-opacity=".85"/>
+      <path d="M48 40h34M48 52h28M48 64h20"/><path d="M50 76l6 6 12-12" stroke-width="4"/>
+      <circle cx="112" cy="58" r="15" fill="#fff" fill-opacity=".15"/><path d="M123 69l14 14" stroke-width="5"/></g>`,
+  };
+  const svg = (id, cls = "") => `<svg class="${cls}" viewBox="0 0 160 100" aria-hidden="true">${ART[id] || ""}</svg>`;
+  const ARROW = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+  let data = { subjects: [], games: [] };
+  let pick = null;
+  try { pick = localStorage.getItem("medgames-subject") || null; } catch {}
+  const subj = (id) => data.subjects.find((s) => s.id === id);
+
+  function panel(g) {
+    const imgs = [g.images?.hero, ...(g.images?.shots || [])].slice(0, 4);
+    return `<div class="panel">${imgs
+      .map((src, i) => `<button type="button" data-full="${esc(src)}" aria-label="${esc(g.title)} ${i ? "gameplay " + i : "title card"}, enlarge">
+          <img src="${esc(src)}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'missing',textContent:'screenshot coming'}))" />
+        </button>`)
+      .join("")}</div>`;
+  }
+
+  function game(g, s) {
+    return `<article class="game" style="--c:${esc(s.color)}">
+      ${panel(g)}
+      <div class="info">
+        <div class="row"><span class="status">${esc(g.status)}</span><span class="fmt">${esc(g.format)}</span></div>
+        <h3>${esc(g.title)}${g.subtitle ? `<small>${esc(g.subtitle)}</small>` : ""}</h3>
+        <p class="pitch">${esc(g.pitch)}</p>
+        ${g.detail ? `<p class="detail">${esc(g.detail)}</p>` : ""}
+        <div class="row">${(g.subjects || []).map((id) => subj(id)).filter(Boolean).map((x) => `<span class="subj" style="--c:${esc(x.color)}">${esc(x.label)}</span>`).join("")}</div>
+        <div class="cta"><a class="play" href="${esc(g.url)}" target="_blank" rel="noopener" style="--c:${esc(s.color)}">Play ${esc(g.short || g.title)} ${ARROW}</a><span class="note">${esc(g.note || "")}</span></div>
+      </div>
+    </article>`;
+  }
+
+  function banner(s) {
+    return `<div class="banner" style="--c:${esc(s.color)};--d:${esc(s.deep)}">
+      ${svg(s.id, "big")}
+      <div><div class="eyebrow">${esc(s.short)}</div><h2>${esc(s.label)}</h2><p>${esc(s.blurb)}</p></div>
+    </div>`;
+  }
+
+  function render() {
+    const { subjects, games } = data;
+    if (pick && !subj(pick)) pick = null;
+    document.getElementById("rack").innerHTML = subjects.map((s) => `<span style="background:${esc(s.color)}"></span>`).join("");
+    const tiles = document.getElementById("tiles");
+    tiles.classList.toggle("has-pick", !!pick);
+    tiles.innerHTML = subjects
+      .map((s) => {
+        const n = games.filter((g) => (g.subjects || []).includes(s.id)).length;
+        return `<button type="button" class="tile" style="--c:${esc(s.color)};--d:${esc(s.deep)}" data-id="${esc(s.id)}" aria-pressed="${pick === s.id}">
+          <span class="art">${svg(s.id)}</span><span><b>${esc(s.label)}</b><small>${esc(s.blurb)}</small></span>
+          <span class="n">${n} game${n === 1 ? "" : "s"}</span></button>`;
+      })
+      .join("");
+    document.getElementById("showAll").hidden = !pick;
+
+    const sections = pick
+      ? [{ s: subj(pick), list: games.filter((g) => (g.subjects || []).includes(pick)) }]
+      : subjects.map((s) => ({ s, list: games.filter((g) => g.primary === s.id) })).filter((x) => x.list.length);
+    document.getElementById("games").innerHTML = sections
+      .map(({ s, list }) => `<section class="section" id="${esc(s.id)}">${banner(s)}${list.map((g) => game(g, s)).join("")}</section>`)
+      .join("");
+    const live = games.filter((g) => g.url).length;
+    document.getElementById("count").textContent = `${live} live game${live === 1 ? "" : "s"}`;
+  }
+
+  function choose(id) {
+    pick = pick === id ? null : id;
+    try { pick ? localStorage.setItem("medgames-subject", pick) : localStorage.removeItem("medgames-subject"); } catch {}
+    render();
+    if (pick) document.getElementById(pick)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  document.getElementById("tiles").addEventListener("click", (e) => { const t = e.target.closest(".tile"); if (t) choose(t.dataset.id); });
+  document.getElementById("showAll").addEventListener("click", () => choose(pick));
+
+  // Click any panel image to see it full size; click or Esc to close.
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest(".panel button");
+    if (b && b.querySelector("img")) {
+      const box = Object.assign(document.createElement("div"), { className: "lightbox" });
+      box.innerHTML = `<img src="${esc(b.dataset.full)}" alt="" />`;
+      box.addEventListener("click", () => box.remove());
+      document.body.append(box);
+    }
+  });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") document.querySelector(".lightbox")?.remove(); });
+
+  fetch("games.json", { cache: "no-store" })
+    .then((r) => r.json())
+    .then((d) => { data = { subjects: d.subjects || [], games: (d.games || []).filter((g) => g.url) }; render(); })
+    .catch(() => { document.getElementById("games").innerHTML = '<p>Could not load the game list. Refresh the page to try again.</p>'; });
+</script>
+</body>
+</html>

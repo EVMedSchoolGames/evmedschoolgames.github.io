@@ -1,0 +1,119 @@
+{
+  "subjects": [
+    {
+      "id": "micro",
+      "label": "Microbiology",
+      "short": "Micro",
+      "color": "#6a3fa6",
+      "deep": "#3f2170",
+      "blurb": "Bugs, stains and the drugs that kill them."
+    },
+    {
+      "id": "pharm",
+      "label": "Pharmacology",
+      "short": "Pharm",
+      "color": "#e9791f",
+      "deep": "#8a3f06",
+      "blurb": "Mechanisms, first-line picks and toxicities."
+    },
+    {
+      "id": "pulm",
+      "label": "Pulmonology",
+      "short": "Pulm",
+      "color": "#2479c9",
+      "deep": "#0f3f73",
+      "blurb": "Curves, volumes and the diseases behind them."
+    },
+    {
+      "id": "cardio",
+      "label": "Cardiology",
+      "short": "Cardio",
+      "color": "#d23048",
+      "deep": "#7a1224",
+      "blurb": "Murmurs, rhythms and the patient in front of you."
+    },
+    {
+      "id": "reasoning",
+      "label": "Clinical reasoning",
+      "short": "Reasoning",
+      "color": "#0d7f86",
+      "deep": "#07474b",
+      "blurb": "Take the history, pick the test, make the call."
+    }
+  ],
+  "games": [
+    {
+      "id": "lymph-node",
+      "title": "Bugs & Drugs Tower Defense",
+      "subtitle": "BDTD for short",
+      "short": "BDTD",
+      "primary": "micro",
+      "subjects": [
+        "micro",
+        "pharm"
+      ],
+      "format": "Tower defence",
+      "pitch": "Tower defence through the body: pick the right drug for every bug, from the lungs to the CD4 ward.",
+      "detail": "11 organ levels plus an endless mode, 163 organisms and 157 drugs, every line cited to First Aid by page.",
+      "status": "Live · beta",
+      "note": "Content still being checked",
+      "url": "https://21veerakumare.github.io/lymph-node/",
+      "images": {
+        "hero": "assets/lymph-node-hero.webp",
+        "shots": [
+          "assets/lymph-node-1.webp",
+          "assets/lymph-node-2.webp",
+          "assets/lymph-node-3.webp"
+        ]
+      }
+    },
+    {
+      "id": "tidal",
+      "title": "Tidal",
+      "subtitle": "Shape the lung curve",
+      "primary": "pulm",
+      "subjects": [
+        "pulm"
+      ],
+      "format": "Curve puzzle",
+      "pitch": "Shape the lung curve. Name the disease. Drag flow-volume loops, spirograms and O₂–Hb curves into the shape that fits the case.",
+      "detail": "29 pathologies, a daily run you can share, and a practice mode with a match meter.",
+      "status": "Live · beta",
+      "note": "Content still being checked",
+      "url": "https://21veerakumare.github.io/tidal/",
+      "images": {
+        "hero": "assets/tidal-hero.webp",
+        "shots": [
+          "assets/tidal-1.webp",
+          "assets/tidal-2.webp",
+          "assets/tidal-3.webp"
+        ]
+      }
+    },
+    {
+      "id": "rounds",
+      "title": "Rounds",
+      "subtitle": "One patient a day",
+      "primary": "reasoning",
+      "subjects": [
+        "reasoning",
+        "cardio",
+        "pulm"
+      ],
+      "format": "Daily case",
+      "pitch": "One patient a day, the same case for everyone. Ask anything, order labs or imaging, or call your resident, attending or a grumpy surgeon for help, then name the diagnosis. Every move costs points, so work fast and lean.",
+      "detail": "A new case every day plus 19 cardiology and pulmonology cases to practise on, built on First Aid, Pathoma and current guidelines. Share your score and time like a Wordle.",
+      "status": "Live · beta",
+      "note": "Content still being checked",
+      "url": "https://21veerakumare.github.io/rounds/",
+      "images": {
+        "hero": "assets/rounds-hero.webp",
+        "shots": [
+          "assets/rounds-1.webp",
+          "assets/rounds-2.webp",
+          "assets/rounds-3.webp"
+        ]
+      }
+    }
+  ]
+}
